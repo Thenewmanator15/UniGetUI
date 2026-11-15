@@ -21,6 +21,7 @@ using UniGetUI.Avalonia.ViewModels.Pages;
 using UniGetUI.Avalonia.Views.Controls;
 using UniGetUI.Avalonia.Views.DialogPages;
 using UniGetUI.Avalonia.Views.Pages;
+using UniGetUI.Core.Classes;
 using UniGetUI.Core.Logging;
 using UniGetUI.Core.SettingsEngine;
 using UniGetUI.Core.Tools;
@@ -255,6 +256,7 @@ public partial class MainWindow : Window
         Resized += (_, _) => _ = SaveGeometryAsync();
         ModalLayer.SizeChanged += (_, _) => UpdateModalSurfaceSize();
         PositionChanged += (_, _) => _ = SaveGeometryAsync();
+        IdleMemoryTrimmer.IsAppInBackground = static () => !_isOnScreen;
         this.GetObservable(WindowStateProperty).SubscribeValue(state => { UpdateOnScreenState(); _ = SaveGeometryAsync(); });
         this.GetObservable(IsVisibleProperty).SubscribeValue(_ => UpdateOnScreenState());
 
