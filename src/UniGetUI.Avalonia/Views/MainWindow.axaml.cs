@@ -2393,6 +2393,7 @@ public partial class MainWindow : Window
     {
         bool wasOnScreen = _isOnScreen;
         _isOnScreen = IsVisible && WindowState != WindowState.Minimized;
+        BackgroundEfficiencyMode.Refresh();
         if (DataContext is not MainWindowViewModel viewModel)
             return;
 
